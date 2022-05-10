@@ -1,25 +1,30 @@
 <template>
-  {{name}}--{{s}}
+{{n}}
+  <button @click="change(8)">22</button>
 </template>
 <script lang="ts">
-import { computed } from 'vue'
-import { useStore,mapState } from 'vuex'
-import {account} from "@/store/type";
-import object from "async-validator/dist-types/validator/object";
-import string from "async-validator/dist-types/validator/string";
+import maps, {w as who} from "@/hooks/commonMap";
+import { mapMutations } from 'vuex'
 export default {
   name:'App',
   setup(){
-   const a =  mapState(['num','password'])
-    console.log(a)
-    const $store = useStore<account>()
-    for (const key in a) {
-      a[key as keyof typeof a] = a[key as keyof typeof a ].bind({$store})
-    }
-    const name = computed(a.num)
-    const s = computed(a.password)
+    let a = maps({
+      n:(state:any)=>state.num,
+      p:'password'
+    },who.state)
+    let i = maps({
+        l:'to',
+        b:'ad'
+    },who.g)
+    const b = mapMutations(['change'])
+    // const i = maps({
+    //   l:'to',
+    //   b:'ad'
+    // },'g')
+
     return {
-     name,s
+  ...a,...b,
+      ...i
     }
   }
 }

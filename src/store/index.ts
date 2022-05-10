@@ -9,10 +9,24 @@ export default createStore<account>({
     }
   },
   getters: {
+    to(state){
+      return function (n:any){
+        return n+''+state.num
+      }
+    },
+    ad(state){
+      return 112
+    }
   },
   mutations: {
+    change(state,payload){
+      state.num+=payload
+    }
   },
   actions: {
+    aca(context){
+      context.commit('change')
+    }
   },
   modules: {
     login
